@@ -1,7 +1,7 @@
 {
-    "name": "your-project-name",
+    "name": "fetch-meta-api-nodejs",
     "version": "1.0.0",
-    "description": "Your project description",
+    "description": "fetch metadata",
     "main": "index.js",
     "scripts": {
         "start": "node index.js"
