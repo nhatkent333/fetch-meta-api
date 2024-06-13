@@ -1,13 +1,13 @@
 {
-    "name": "fetch-meta-api-nodejs",
-    "version": "1.0.0",
-    "main": "index.js",
-    "scripts": {
-        "start": "node index.js"
-    },
-    "dependencies": {
-        "express": "^4.17.2",
-        "axios": "^0.24.0",
-        "cheerio": "^1.0.0-rc.10"
-    }
+  "name": "fetch-page-title-backend",
+  "version": "1.0.0",
+  "description": "Node.js backend to fetch webpage titles",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "puppeteer": "^12.0.0"  // Update this line with the latest version of Puppeteer
+  }
 }
