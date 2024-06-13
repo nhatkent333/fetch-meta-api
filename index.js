@@ -14,7 +14,7 @@ app.get('/api/fetch-title', async (req, res) => {
   try {
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
-    await page.goto(url);
+    await page.goto(url, { waitUntil: 'networkidle2', timeout: 30000 });
 
     // Wait for page to load completely
     await page.waitForSelector('title');
@@ -23,6 +23,10 @@ app.get('/api/fetch-title', async (req, res) => {
     const title = await page.title();
 
     await browser.close();
+
+    if (!title) {
+      throw new Error('No title found');
+    }
 
     res.json({ title });
   } catch (error) {
