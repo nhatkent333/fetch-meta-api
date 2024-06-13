@@ -8,6 +8,6 @@
   },
   "dependencies": {
     "express": "^4.17.2",
-    "puppeteer": "^12.0.0"  // Update this line with the latest version of Puppeteer
+    "puppeteer": "^12.0.0"
   }
 }
