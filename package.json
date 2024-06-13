@@ -1,7 +1,6 @@
 {
     "name": "fetch-meta-api-nodejs",
     "version": "1.0.0",
-    "description": "fetch metadata",
     "main": "index.js",
     "scripts": {
         "start": "node index.js"
