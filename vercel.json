@@ -2,11 +2,9 @@
   "version": 2,
   "routes": [
     { "src": "/api/fetch-title", "dest": "/index.js" }
-    // Add more routes as needed
   ],
   "builds": [
     { "src": "/index.js", "use": "@vercel/node" }
-    // Add more builds as needed
   ],
   "headers": [
     {
