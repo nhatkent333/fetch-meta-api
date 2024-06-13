@@ -1,25 +1,10 @@
 const express = require('express');
-const axios = require('axios');
-const cheerio = require('cheerio');
+const puppeteer = require('puppeteer');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON bodies
-app.use(express.json());
-
-// CORS middleware
-app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', '*'); // Allow all origins
-  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-  if (req.method === 'OPTIONS') {
-    return res.sendStatus(200); // Handle preflight requests
-  }
-  next();
-});
-
-// Endpoint to fetch webpage title
+// Endpoint to fetch webpage title using Puppeteer
 app.get('/api/fetch-title', async (req, res) => {
   const url = req.query.url;
   if (!url) {
@@ -27,10 +12,17 @@ app.get('/api/fetch-title', async (req, res) => {
   }
 
   try {
-    const response = await axios.get(url);
-    const html = response.data;
-    const $ = cheerio.load(html);
-    const title = $('title').text();
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
+
+    // Wait for page to load completely
+    await page.waitForSelector('title');
+
+    // Get the title of the page
+    const title = await page.title();
+
+    await browser.close();
 
     res.json({ title });
   } catch (error) {
